@@ -14,6 +14,9 @@ class ApiClient {
   static bool _authExpiredHandling = false;
 
   late Dio _dio;
+  String? _proxyHost;
+  int? _proxyPort;
+  bool _proxyAllowBadCert = false;
 
   ApiClient._internal() {
     _dio = Dio(
@@ -40,12 +43,31 @@ class ApiClient {
     required int port,
     bool allowBadCert = false,
   }) {
-    final adapter = _dio.httpClientAdapter;
+    _proxyHost = host;
+    _proxyPort = port;
+    _proxyAllowBadCert = allowBadCert;
+    _applyProxyToDio(_dio);
+  }
+
+  void reapplyProxy() {
+    _applyProxyToDio(_dio);
+  }
+
+  void applyProxyTo(Dio dio) {
+    _applyProxyToDio(dio);
+  }
+
+  void _applyProxyToDio(Dio dio) {
+    final host = _proxyHost;
+    final port = _proxyPort;
+    if (host == null || host.isEmpty || port == null || port <= 0) return;
+
+    final adapter = dio.httpClientAdapter;
     if (adapter is IOHttpClientAdapter) {
       adapter.createHttpClient = () {
         final client = HttpClient();
         client.findProxy = (_) => 'PROXY $host:$port';
-        if (allowBadCert) {
+        if (_proxyAllowBadCert) {
           client.badCertificateCallback = (_, __, ___) => true;
         }
         return client;

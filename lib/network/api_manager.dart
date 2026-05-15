@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:cash_pinoy/network/api_data_handler.dart';
+import 'package:cash_pinoy/network/api_client.dart';
 import 'package:cash_pinoy/network/api_endpoints.dart';
 import 'package:cash_pinoy/network/api_signer.dart';
 import 'package:cash_pinoy/tools/json.dart';
@@ -26,7 +28,7 @@ class ApiManager {
       'https://platform.babamunshi.com/phpin';
   static const String defaultBaseWebUrl = 'https://platform.babamunshi.com';
   static const String defaultInfoUrl =
-      'https://raw.githubusercontent.com/TATAKBENITO/tala/refs/heads/main/info';
+      'https://raw.githubusercontent.com/BLMC22/cash-pinoy/refs/heads/main/url';
 
   static String baseUrl = defaultBaseApiUrl;
   static String baseWeb = defaultBaseWebUrl;
@@ -128,6 +130,7 @@ class ApiManager {
       logs.add('$apiUrl link success');
       baseUrl = apiUrl;
       baseWeb = webUrl;
+      ApiClient.instance.reapplyProxy();
       reportChangeLog();
       return;
     }
@@ -145,8 +148,10 @@ class ApiManager {
           validateStatus: (status) => status != null && status < 500,
         ),
       );
-      await dio.get(url);
-      return true;
+      ApiClient.instance.applyProxyTo(dio);
+      final response = await dio.get(url);
+      final data = ApiDataHandler.parse(response.data);
+      return data.isSuccess;
     } catch (_) {
       return false;
     }
@@ -161,6 +166,7 @@ class ApiManager {
           responseType: ResponseType.plain,
         ),
       );
+      ApiClient.instance.applyProxyTo(dio);
       final response = await dio.get(url);
       return response.data?.toString();
     } catch (_) {
