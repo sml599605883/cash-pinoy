@@ -18,7 +18,7 @@ class CashPinoyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     HudManager.init(overlayKey);
     return MaterialApp(
-      title: 'Cash Pinoy',
+      title: 'Tala',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.light(),
       navigatorKey: navigatorKey,

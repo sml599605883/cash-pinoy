@@ -171,7 +171,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: 18.h),
                     Center(
                       child: Text(
-                        'Cash Pinoy',
+                        'Tala',
                         style: TextStyle(
                           fontSize: 34.sp,
                           fontWeight: FontWeight.w600,

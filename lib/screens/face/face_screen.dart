@@ -48,9 +48,12 @@ class _FaceScreenState extends State<FaceScreen> with WidgetsBindingObserver {
 
   Future<void> _initWithOptions() async {
     Map<String, dynamic> options = {
-      'partner': 'boqin_ph',
-      'appKey': '1dc25522f2adc77f5347816c0f7fa31b',
-      'appName': 'julyTwo_test',
+      // 'partner': 'boqin_ph',
+      // 'appKey': '1dc25522f2adc77f5347816c0f7fa31b',
+      // 'appName': 'julyTwo_test',
+      'partner': 'cash_pinoy',
+      'appKey': 'f1e22726dc87cfb44decfb15310832b4',
+      'appName': 'cash_pinoy',
       'country': 'sg',
       'language': 'en',
     };

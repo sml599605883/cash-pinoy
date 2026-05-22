@@ -107,12 +107,14 @@ class _LoanDetailScreenState extends State<LoanDetailScreen> {
         HudManager.showFailure(message: 'Please choose');
         return;
       }
+      HudManager.showLoading();
       final selected = selectedList.first;
       final response = await CertifyApi().changeBankCard(
         bindId: selected.tillers,
         orderNo: widget.orderNo,
       );
       final belletristic = response.dysphasias['belletristic'].stringValue;
+      HudManager.dismiss();
       NavHelper.toScheme(belletristic);
     } catch (e) {
       HudManager.showFailure(message: RequestError.message(e));

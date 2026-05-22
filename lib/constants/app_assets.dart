@@ -5,6 +5,7 @@ class AppAssets {
   static const String promoBanner = 'assets/image/home/promo_banner.png';
   static const String regulatorBadge = 'assets/image/home/regulator_badge.png';
   static const String iconSupport = 'assets/image/home/icon_support.png';
+  static const String iconLogo = 'assets/image/logo.png';
   static const String iconApply = 'assets/image/home/hero_icon.png';
   static const String heroProcess = 'assets/image/home/hero_process_bg.png';
   static const String iconArrow = 'assets/image/home/hero_arrow.png';

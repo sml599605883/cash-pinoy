@@ -84,17 +84,24 @@ class _AccountScreenState extends State<AccountScreen> {
                       height: 88.w,
                       decoration: BoxDecoration(
                         color: Colors.transparent,
-                        borderRadius: BorderRadius.circular(22.r),
+                        borderRadius: BorderRadius.circular(20.r),
+                        border: Border.all(
+                          color: const Color(0xFF7927EB),
+                          width: 1.w,
+                        ),
                       ),
-                      child: Image.asset(
-                        AppAssets.iconSupport,
-                        width: 88.w,
-                        height: 88.w,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(20.r),
+                        child: Image.asset(
+                          AppAssets.iconLogo,
+                          width: 88.w,
+                          height: 88.w,
+                        ),
                       ),
                     ),
                     SizedBox(height: 16.h),
                     Text(
-                      'Cash Pinoy',
+                      'Tala',
                       style: TextStyle(
                         fontSize: 18.sp,
                         fontWeight: FontWeight.w600,

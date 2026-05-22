@@ -1,16 +1,15 @@
 {
   "images" : [
     {
+      "filename" : "launchPage.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "launchPage@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "launchPage@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
